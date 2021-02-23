@@ -23,9 +23,7 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>Splash</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Home</string>
+	<string>SplashView</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
