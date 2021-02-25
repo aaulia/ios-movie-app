@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE61725E760BA00AFABCE /* FeedViewController.swift */; };
 		551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551CE61825E760BA00AFABCE /* FeedView.xib */; };
-		551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62325E77E6300AFABCE /* FeedConstants.swift */; };
+		551CE62425E77E6300AFABCE /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62325E77E6300AFABCE /* FeedType.swift */; };
 		551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62B25E78FB400AFABCE /* ApiConstants.swift */; };
 		551CE63425E7A2AC00AFABCE /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE63325E7A2AC00AFABCE /* ApiRouter.swift */; };
 		551CE63725E7B3D500AFABCE /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE63625E7B3D500AFABCE /* ApiError.swift */; };
@@ -26,7 +26,7 @@
 		32694559DCB0D960C0A0806F /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
 		551CE61725E760BA00AFABCE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		551CE61825E760BA00AFABCE /* FeedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedView.xib; sourceTree = "<group>"; };
-		551CE62325E77E6300AFABCE /* FeedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedConstants.swift; sourceTree = "<group>"; };
+		551CE62325E77E6300AFABCE /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
 		551CE62B25E78FB400AFABCE /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		551CE63325E7A2AC00AFABCE /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		551CE63625E7B3D500AFABCE /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		551CE61625E75C3B00AFABCE /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				551CE62325E77E6300AFABCE /* FeedConstants.swift */,
+				551CE62325E77E6300AFABCE /* FeedType.swift */,
 				551CE61725E760BA00AFABCE /* FeedViewController.swift */,
 				551CE61825E760BA00AFABCE /* FeedView.xib */,
 			);
@@ -299,7 +299,7 @@
 				551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */,
 				555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */,
 				551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */,
-				551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */,
+				551CE62425E77E6300AFABCE /* FeedType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
