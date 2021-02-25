@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE61725E760BA00AFABCE /* FeedViewController.swift */; };
+		551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551CE61825E760BA00AFABCE /* FeedView.xib */; };
+		551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62325E77E6300AFABCE /* FeedConstants.swift */; };
 		555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CD52425E5809B001AB00B /* AppDelegate.swift */; };
 		555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CD52825E5809B001AB00B /* HomeViewController.swift */; };
 		555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 555CD52D25E5809C001AB00B /* Assets.xcassets */; };
@@ -17,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		32694559DCB0D960C0A0806F /* Pods-MovieApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.debug.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.debug.xcconfig"; sourceTree = "<group>"; };
+		551CE61725E760BA00AFABCE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		551CE61825E760BA00AFABCE /* FeedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedView.xib; sourceTree = "<group>"; };
+		551CE62325E77E6300AFABCE /* FeedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedConstants.swift; sourceTree = "<group>"; };
 		555CD52125E5809B001AB00B /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		555CD52425E5809B001AB00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		555CD52825E5809B001AB00B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +46,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		551CE61625E75C3B00AFABCE /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				551CE62325E77E6300AFABCE /* FeedConstants.swift */,
+				551CE61725E760BA00AFABCE /* FeedViewController.swift */,
+				551CE61825E760BA00AFABCE /* FeedView.xib */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		555CD51825E5809B001AB00B = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +96,7 @@
 		556E6EF525E593D10065EC32 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				551CE61625E75C3B00AFABCE /* Feed */,
 				556E6EF725E593DA0065EC32 /* Home */,
 				556E6EF925E593E10065EC32 /* Splash */,
 			);
@@ -181,6 +198,7 @@
 			files = (
 				556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */,
 				556E6F0425E5A2D40065EC32 /* HomeView.xib in Resources */,
+				551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */,
 				555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */,
+				551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */,
 				555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */,
+				551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

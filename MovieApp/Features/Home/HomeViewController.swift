@@ -7,14 +7,19 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Home"
+        
+        viewControllers = [
+            FeedViewController(withType: .nowPlaying),
+            FeedViewController(withType: .popular),
+            FeedViewController(withType: .topRated),
+            FeedViewController(withType: .upcoming)
+        ]
     }
 
-
 }
-
