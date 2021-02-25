@@ -3,18 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE61725E760BA00AFABCE /* FeedViewController.swift */; };
 		551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551CE61825E760BA00AFABCE /* FeedView.xib */; };
 		551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62325E77E6300AFABCE /* FeedConstants.swift */; };
+		551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE62B25E78FB400AFABCE /* ApiConstants.swift */; };
+		551CE63425E7A2AC00AFABCE /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE63325E7A2AC00AFABCE /* ApiRouter.swift */; };
+		551CE63725E7B3D500AFABCE /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551CE63625E7B3D500AFABCE /* ApiError.swift */; };
 		555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CD52425E5809B001AB00B /* AppDelegate.swift */; };
 		555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555CD52825E5809B001AB00B /* HomeViewController.swift */; };
 		555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 555CD52D25E5809C001AB00B /* Assets.xcassets */; };
 		556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556E6F0025E5A2CD0065EC32 /* SplashView.xib */; };
 		556E6F0425E5A2D40065EC32 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556E6F0325E5A2D40065EC32 /* HomeView.xib */; };
+		55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B03BEE25E7F6E700365DEC /* TMDB.plist */; };
 		56379596CD6042BA3E840AA8 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B84E42FD702378990DCBC /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +27,9 @@
 		551CE61725E760BA00AFABCE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		551CE61825E760BA00AFABCE /* FeedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedView.xib; sourceTree = "<group>"; };
 		551CE62325E77E6300AFABCE /* FeedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedConstants.swift; sourceTree = "<group>"; };
+		551CE62B25E78FB400AFABCE /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		551CE63325E7A2AC00AFABCE /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
+		551CE63625E7B3D500AFABCE /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		555CD52125E5809B001AB00B /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		555CD52425E5809B001AB00B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		555CD52825E5809B001AB00B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +37,7 @@
 		555CD53225E5809C001AB00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		556E6F0025E5A2CD0065EC32 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		556E6F0325E5A2D40065EC32 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		55B03BEE25E7F6E700365DEC /* TMDB.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TMDB.plist; path = MovieApp/TMDB.plist; sourceTree = SOURCE_ROOT; };
 		574B84E42FD702378990DCBC /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D6137D63CAA7611546BC0B4 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +64,17 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		551CE62A25E78F7200AFABCE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				551CE62B25E78FB400AFABCE /* ApiConstants.swift */,
+				551CE63625E7B3D500AFABCE /* ApiError.swift */,
+				551CE63325E7A2AC00AFABCE /* ApiRouter.swift */,
+				55B03BEE25E7F6E700365DEC /* TMDB.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		555CD51825E5809B001AB00B = {
 			isa = PBXGroup;
 			children = (
@@ -77,9 +96,10 @@
 		555CD52325E5809B001AB00B /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				556E6EF325E593CA0065EC32 /* Core */,
-				556E6EF525E593D10065EC32 /* Features */,
 				555CD52D25E5809C001AB00B /* Assets.xcassets */,
+				556E6EF325E593CA0065EC32 /* Core */,
+				551CE62A25E78F7200AFABCE /* Data */,
+				556E6EF525E593D10065EC32 /* Features */,
 				555CD53225E5809C001AB00B /* Info.plist */,
 			);
 			path = MovieApp;
@@ -145,6 +165,7 @@
 			buildConfigurationList = 555CD53525E5809C001AB00B /* Build configuration list for PBXNativeTarget "MovieApp" */;
 			buildPhases = (
 				C760C9670247227CF49E5D8E /* [CP] Check Pods Manifest.lock */,
+				55B03BD725E7F01900365DEC /* Check ApiKey */,
 				555CD51D25E5809B001AB00B /* Sources */,
 				555CD51E25E5809B001AB00B /* Frameworks */,
 				555CD51F25E5809B001AB00B /* Resources */,
@@ -198,6 +219,7 @@
 			files = (
 				556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */,
 				556E6F0425E5A2D40065EC32 /* HomeView.xib in Resources */,
+				55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */,
 				551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */,
 				555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */,
 			);
@@ -222,6 +244,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		55B03BD725E7F01900365DEC /* Check ApiKey */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Check ApiKey";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nAPIKEY_BASE_NAME=\"TMDB\"\nAPIKEY_FILE_PATH=$SRCROOT/$PRODUCT_NAME/${APIKEY_BASE_NAME}.plist\nSAMPLE_FILE_PATH=${APIKEY_FILE_PATH}.sample\n\nif [ ! -f \"$APIKEY_FILE_PATH\" ]; then\n    cp -v \"$SAMPLE_FILE_PATH\" \"$APIKEY_FILE_PATH\"\nfi\n";
 		};
 		C760C9670247227CF49E5D8E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -252,9 +293,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551CE63725E7B3D500AFABCE /* ApiError.swift in Sources */,
 				555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */,
+				551CE63425E7A2AC00AFABCE /* ApiRouter.swift in Sources */,
 				551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */,
 				555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */,
+				551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */,
 				551CE62425E77E6300AFABCE /* FeedConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
