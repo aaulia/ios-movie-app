@@ -10,6 +10,10 @@ import UIKit
 class FeedViewController: UIViewController {
     
     let feedType: FeedType
+    
+    private(set) lazy var output: FeedInteractorInput = {
+       return FeedInteractor(FeedPresenter(self), FeedWorker())
+    }()
 
     init(withType type: FeedType) {
         self.feedType = type
@@ -29,5 +33,9 @@ class FeedViewController: UIViewController {
         tabBarItem.title = feedType.name
         tabBarItem.image = UIImage(named: feedType.icon)
     }
+    
+}
+
+extension FeedViewController: FeedPresenterOutput {
     
 }
