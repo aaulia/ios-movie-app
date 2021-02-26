@@ -21,8 +21,8 @@ struct Feed {
             let image: String?
             
             enum CodingKeys: String, CodingKey {
-                case image = "poster_path"
                 case title
+                case image = "poster_path"
             }
         }
     }
@@ -32,7 +32,7 @@ struct Feed {
         
         struct Movie {
             let title: String
-            let image: String
+            let image: URL?
         }
     }
     

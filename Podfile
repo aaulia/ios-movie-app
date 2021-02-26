@@ -8,4 +8,5 @@ target 'MovieApp' do
 
   # Pods for MovieApp
   pod 'Alamofire', '~> 5.4'
+  pod 'Nuke', '~> 9.0'
 end

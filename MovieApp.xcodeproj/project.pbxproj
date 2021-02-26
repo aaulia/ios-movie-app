@@ -22,6 +22,8 @@
 		5563254025E82DBC005271B8 /* FeedWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563253F25E82DBC005271B8 /* FeedWorker.swift */; };
 		556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556E6F0025E5A2CD0065EC32 /* SplashView.xib */; };
 		556E6F0425E5A2D40065EC32 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556E6F0325E5A2D40065EC32 /* HomeView.xib */; };
+		557A47EC25E96B150074A58D /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47EA25E96B150074A58D /* MovieViewCell.swift */; };
+		557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 557A47EB25E96B150074A58D /* MovieViewCell.xib */; };
 		55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B03BEE25E7F6E700365DEC /* TMDB.plist */; };
 		56379596CD6042BA3E840AA8 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B84E42FD702378990DCBC /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		5563253F25E82DBC005271B8 /* FeedWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWorker.swift; sourceTree = "<group>"; };
 		556E6F0025E5A2CD0065EC32 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
 		556E6F0325E5A2D40065EC32 /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		557A47EA25E96B150074A58D /* MovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
+		557A47EB25E96B150074A58D /* MovieViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewCell.xib; sourceTree = "<group>"; };
 		55B03BEE25E7F6E700365DEC /* TMDB.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TMDB.plist; path = MovieApp/TMDB.plist; sourceTree = SOURCE_ROOT; };
 		574B84E42FD702378990DCBC /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D6137D63CAA7611546BC0B4 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,13 +69,11 @@
 		551CE61625E75C3B00AFABCE /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				5563253925E82DAB005271B8 /* FeedInteractor.swift */,
-				5563253625E82DA5005271B8 /* FeedModel.swift */,
-				5563253C25E82DB4005271B8 /* FeedPresenter.swift */,
-				551CE62325E77E6300AFABCE /* FeedType.swift */,
-				551CE61725E760BA00AFABCE /* FeedViewController.swift */,
-				551CE61825E760BA00AFABCE /* FeedView.xib */,
-				5563253F25E82DBC005271B8 /* FeedWorker.swift */,
+				557A47DD25E94B520074A58D /* Interactor */,
+				557A47DB25E94B4D0074A58D /* Model */,
+				557A47D925E94B470074A58D /* Presenter */,
+				557A47D525E94B3B0074A58D /* ViewController */,
+				557A47D725E94B420074A58D /* Worker */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -150,6 +152,58 @@
 				556E6F0025E5A2CD0065EC32 /* SplashView.xib */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		557A47D525E94B3B0074A58D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				557A47E925E96AD10074A58D /* ViewCell */,
+				551CE62325E77E6300AFABCE /* FeedType.swift */,
+				551CE61725E760BA00AFABCE /* FeedViewController.swift */,
+				551CE61825E760BA00AFABCE /* FeedView.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		557A47D725E94B420074A58D /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				5563253F25E82DBC005271B8 /* FeedWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		557A47D925E94B470074A58D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				5563253C25E82DB4005271B8 /* FeedPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		557A47DB25E94B4D0074A58D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5563253625E82DA5005271B8 /* FeedModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		557A47DD25E94B520074A58D /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				5563253925E82DAB005271B8 /* FeedInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		557A47E925E96AD10074A58D /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				557A47EA25E96B150074A58D /* MovieViewCell.swift */,
+				557A47EB25E96B150074A58D /* MovieViewCell.xib */,
+			);
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 		62E786CD099A70E397284E19 /* Frameworks */ = {
@@ -231,6 +285,7 @@
 			files = (
 				556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */,
 				556E6F0425E5A2D40065EC32 /* HomeView.xib in Resources */,
+				557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */,
 				55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */,
 				551CE61A25E760BA00AFABCE /* FeedView.xib in Resources */,
 				555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */,
@@ -313,6 +368,7 @@
 				555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */,
 				551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */,
 				551CE62425E77E6300AFABCE /* FeedType.swift in Sources */,
+				557A47EC25E96B150074A58D /* MovieViewCell.swift in Sources */,
 				5563253725E82DA5005271B8 /* FeedModel.swift in Sources */,
 				5563253A25E82DAB005271B8 /* FeedInteractor.swift in Sources */,
 				5563254025E82DBC005271B8 /* FeedWorker.swift in Sources */,

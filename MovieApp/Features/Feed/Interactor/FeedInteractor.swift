@@ -34,19 +34,23 @@ final class FeedInteractor: FeedInteractorInput {
     func fetchMovies(_ request: Feed.Request) {
         output.showLoading()
         worker.fetchMovies(request.feedType)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure(let error): self?.output.showFailure(error)
-                }
-            } receiveValue: { [weak self] response in
-                let movies = response.results.map { entry in
-                    Feed.ViewModel.Movie(title: entry.title, image: entry.image ?? "")
-                }
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    switch completion {
+                    case .finished: break
+                    case .failure(let error): self?.output.showFailure(error)
+                    }
+                },
+                receiveValue: { [weak self] response in
+                    let movies = response.results.map { entry -> Feed.ViewModel.Movie in
+                        let poster = entry.image.map { ApiRouter.getImageUrl(path: $0, forType: .poster) }
+                        return Feed.ViewModel.Movie(title: entry.title, image: poster)
+                    }
                 
-                self?.output.hideLoading()
-                self?.output.showSuccess(Feed.ViewModel(movies: movies))
-            }
+                    self?.output.hideLoading()
+                    self?.output.showSuccess(Feed.ViewModel(movies: movies))
+                }
+            )
             .store(in: &cancellables)
     }
     

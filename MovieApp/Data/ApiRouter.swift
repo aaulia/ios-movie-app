@@ -92,5 +92,9 @@ struct ApiRouter {
             }
         }.eraseToAnyPublisher()
     }
-
+    
+    static func getImageUrl(path: String, forType type: ApiConstants.TMDB.ImageType) -> URL {
+        return try! "\(ApiConstants.TMDB.imgUrl)\(type.size)\(path)".asURL()
+    }
+    
 }
