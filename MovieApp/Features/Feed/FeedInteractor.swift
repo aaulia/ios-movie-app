@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import Combine
 
 protocol FeedInteractorInput {
-    
+    func fetchMovies(_ request: Feed.Request)
 }
 
 protocol FeedInteractorOutput {
-    
+    func showLoading()
+    func hideLoading()
+    func showFailure(_ error: Error)
+    func showSuccess(_ model: Feed.ViewModel)
 }
 
 final class FeedInteractor: FeedInteractorInput {
@@ -20,8 +24,30 @@ final class FeedInteractor: FeedInteractorInput {
     let output: FeedInteractorOutput
     let worker: FeedWorkerProtocol
     
+    var cancellables = Set<AnyCancellable>()
+    
     init(_ output: FeedInteractorOutput, _ worker: FeedWorkerProtocol) {
         self.output = output
         self.worker = worker
     }
+    
+    func fetchMovies(_ request: Feed.Request) {
+        output.showLoading()
+        worker.fetchMovies(request.feedType)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished: break
+                case .failure(let error): self?.output.showFailure(error)
+                }
+            } receiveValue: { [weak self] response in
+                let movies = response.results.map { entry in
+                    Feed.ViewModel.Movie(title: entry.title, image: entry.image ?? "")
+                }
+                
+                self?.output.hideLoading()
+                self?.output.showSuccess(Feed.ViewModel(movies: movies))
+            }
+            .store(in: &cancellables)
+    }
+    
 }

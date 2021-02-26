@@ -29,6 +29,12 @@ class FeedViewController: UIViewController {
         setup()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        output.fetchMovies(Feed.Request(feedType: feedType))
+    }
+    
     private func setup() {
         tabBarItem.title = feedType.name
         tabBarItem.image = UIImage(named: feedType.icon)
@@ -37,5 +43,22 @@ class FeedViewController: UIViewController {
 }
 
 extension FeedViewController: FeedPresenterOutput {
+    
+    func showLoading() {
+        debugPrint("showLoading")
+    }
+    
+    func hideLoading() {
+        debugPrint("hideLoading")
+    }
+    
+    func showFailure(_ error: Error) {
+        debugPrint("showFailure", error)
+    }
+    
+    func showSuccess(_ model: Feed.ViewModel) {
+        debugPrint("showSuccess", model)
+    }
+    
     
 }

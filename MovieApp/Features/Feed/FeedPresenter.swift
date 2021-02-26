@@ -8,7 +8,10 @@
 import Foundation
 
 protocol FeedPresenterOutput {
-    
+    func showLoading()
+    func hideLoading()
+    func showFailure(_ error: Error)
+    func showSuccess(_ model: Feed.ViewModel)
 }
 
 final class FeedPresenter: FeedInteractorOutput {
@@ -18,5 +21,16 @@ final class FeedPresenter: FeedInteractorOutput {
     init(_ output: FeedPresenterOutput) {
         self.output = output
     }
+
+    func showLoading() { output.showLoading() }
     
+    func hideLoading() { output.hideLoading() }
+
+    func showFailure(_ error: Error) {
+        output.showFailure(error)
+    }
+
+    func showSuccess(_ model: Feed.ViewModel) {
+        output.showSuccess(model)
+    }
 }
