@@ -44,7 +44,7 @@ final class FeedInteractor: FeedInteractorInput {
                 receiveValue: { [weak self] response in
                     let movies = response.results.map { entry -> Feed.ViewModel.Movie in
                         let poster = entry.image.map { ApiRouter.getImageUrl(path: $0, forType: .poster) }
-                        return Feed.ViewModel.Movie(title: entry.title, image: poster)
+                        return Feed.ViewModel.Movie(id: entry.id, title: entry.title, image: poster)
                     }
                 
                     self?.output.hideLoading()

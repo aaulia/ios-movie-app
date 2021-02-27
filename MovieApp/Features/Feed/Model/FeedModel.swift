@@ -17,10 +17,12 @@ struct Feed {
         let results: [Movie]
         
         struct Movie: Codable {
+            let id   : Int
             let title: String
             let image: String?
             
             enum CodingKeys: String, CodingKey {
+                case id
                 case title
                 case image = "poster_path"
             }
@@ -31,6 +33,7 @@ struct Feed {
         let movies: [Movie]
         
         struct Movie {
+            let id   : Int
             let title: String
             let image: URL?
         }

@@ -12,15 +12,18 @@ final class FeedViewController: UIViewController {
     
     @IBOutlet weak var movieCollection: UICollectionView!
     
-    private let feedType: FeedType
-
     private let refreshControl = UIRefreshControl()
+    private let brokenImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
     
+    
+    private let feedType: FeedType
     private var viewModel = Feed.ViewModel(movies: [])
+    
     
     private(set) lazy var output: FeedInteractorInput = {
        return FeedInteractor(FeedPresenter(self), FeedWorker())
     }()
+    private let router: FeedRouting = FeedRouter()
 
     
     init(withType type: FeedType) {
@@ -95,13 +98,18 @@ extension FeedViewController: FeedPresenterOutput {
 
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = viewModel.movies[indexPath.row]
+        router.routeToDetails(movieId: movie.id)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let spacingSum: CGFloat = 10 * 3
-        let contentSum: CGFloat = movieCollection.bounds.width - spacingSum
+        let spacing: CGFloat = 10 * 4
+        let content: CGFloat = movieCollection.bounds.width - spacing
         
-        let w = contentSum / 2.0
-        let h = w / 2 * 3
+        let w = content / 3
+        let h = (w / 2) * 3
         
         return CGSize(width: w, height: h)
     }
@@ -121,12 +129,13 @@ extension FeedViewController: UICollectionViewDataSource {
         if let movieCell = cell as? MovieViewCell {
             movieCell.layer.cornerRadius = 8.0
             movieCell.layer.cornerCurve = .continuous
-            movieCell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             
             if let poster = data.image {
+                movieCell.imagePoster.contentMode = .scaleAspectFill
                 Nuke.loadImage(with: poster, into: movieCell.imagePoster)
             } else {
-                movieCell.imagePoster.image = nil
+                movieCell.imagePoster.contentMode = .center
+                movieCell.imagePoster.image = brokenImage
             }
         }
         
