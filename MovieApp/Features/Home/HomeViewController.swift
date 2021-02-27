@@ -12,8 +12,6 @@ final class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Home"
-        
         viewControllers = [
             FeedViewController(withType: .nowPlaying),
             FeedViewController(withType: .popular),

@@ -51,6 +51,12 @@ final class FeedViewController: UIViewController {
         output.fetchMovies(Feed.Request(feedType: self.feedType))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.title = feedType.name
+    }
+    
     
     @objc private func onRefresh(_ sender: AnyObject) {
         output.fetchMovies(Feed.Request(feedType: self.feedType))
