@@ -22,16 +22,18 @@ struct ApiRoute {
         case popular
         case topRated
         case upcoming
+        
+        case details(Int)
 
         
         var method: HTTPMethod {
             switch self {
             case .nowPlaying,
-                 .popular,
-                 .topRated,
-                 .upcoming:
+                 .popular   ,
+                 .topRated  ,
+                 .upcoming  : return .get
                 
-                return .get
+            case .details(_): return .get
             }
         }
         
@@ -41,6 +43,9 @@ struct ApiRoute {
             case .popular   : return "/movie/popular"
             case .topRated  : return "/movie/top_rated"
             case .upcoming  : return "/movie/upcoming"
+            
+            case .details(let movieId):
+                return "/movie/\(movieId)"
             }
         }
         
@@ -56,6 +61,12 @@ struct ApiRoute {
                     "region"  : ApiConstants.TMDB.regionCode,
                     "language": ApiConstants.TMDB.languageCode,
                     "page"    : 1
+                ]
+                
+            case .details(_):
+                return [
+                    "api_key": ApiConstants.TMDB.apiKey,
+                    "append_to_response": "credits"
                 ]
             }
         }

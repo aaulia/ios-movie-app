@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FeedRouting {
     func routeToDetails(movieId id: Int)
@@ -13,9 +14,14 @@ protocol FeedRouting {
 
 final class FeedRouter: FeedRouting {
     
+    weak var controller: UIViewController?
+    
+    init(controller: UIViewController) {
+        self.controller = controller
+    }
+    
     func routeToDetails(movieId id: Int) {
-        // TODO: route to movie details
-        debugPrint("Opening movie_id: \(id)")
+        controller?.present(DetailsViewController(movieId: id), animated: true)
     }
     
 }

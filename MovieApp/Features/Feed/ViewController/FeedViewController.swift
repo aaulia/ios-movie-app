@@ -36,7 +36,7 @@ final class FeedViewController: UICollectionViewController {
     private var viewModel = Feed.ViewModel(movies: [])
     
     
-    private let router: FeedRouting = FeedRouter()
+    private(set) lazy var router: FeedRouting = { FeedRouter(controller: self) }()
     private(set) lazy var output: FeedInteractorInput = {
        return FeedInteractor(FeedPresenter(self), FeedWorker())
     }()

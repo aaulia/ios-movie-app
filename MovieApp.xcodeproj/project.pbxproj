@@ -23,6 +23,11 @@
 		557A47EC25E96B150074A58D /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47EA25E96B150074A58D /* MovieViewCell.swift */; };
 		557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 557A47EB25E96B150074A58D /* MovieViewCell.xib */; };
 		557A47FA25EA13470074A58D /* FeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47F925EA13470074A58D /* FeedRouter.swift */; };
+		55800D9225EA989D00834BEC /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9125EA989D00834BEC /* DetailsModel.swift */; };
+		55800D9B25EAA27000834BEC /* DetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9A25EAA27000834BEC /* DetailsWorker.swift */; };
+		55800D9F25EAA38C00834BEC /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9E25EAA38C00834BEC /* DetailsInteractor.swift */; };
+		55800DA425EAA96700834BEC /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800DA325EAA96700834BEC /* DetailsPresenter.swift */; };
+		55800DAA25EAA9D100834BEC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800DA925EAA9D100834BEC /* DetailsViewController.swift */; };
 		55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B03BEE25E7F6E700365DEC /* TMDB.plist */; };
 		56379596CD6042BA3E840AA8 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B84E42FD702378990DCBC /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +52,11 @@
 		557A47EA25E96B150074A58D /* MovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
 		557A47EB25E96B150074A58D /* MovieViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewCell.xib; sourceTree = "<group>"; };
 		557A47F925EA13470074A58D /* FeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRouter.swift; sourceTree = "<group>"; };
+		55800D9125EA989D00834BEC /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
+		55800D9A25EAA27000834BEC /* DetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsWorker.swift; sourceTree = "<group>"; };
+		55800D9E25EAA38C00834BEC /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
+		55800DA325EAA96700834BEC /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
+		55800DA925EAA9D100834BEC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		55B03BEE25E7F6E700365DEC /* TMDB.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TMDB.plist; path = MovieApp/TMDB.plist; sourceTree = SOURCE_ROOT; };
 		574B84E42FD702378990DCBC /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D6137D63CAA7611546BC0B4 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +139,7 @@
 		556E6EF525E593D10065EC32 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				55800D8F25EA984F00834BEC /* Details */,
 				551CE61625E75C3B00AFABCE /* Feed */,
 				556E6EF725E593DA0065EC32 /* Home */,
 				556E6EF925E593E10065EC32 /* Splash */,
@@ -209,6 +220,58 @@
 				557A47F925EA13470074A58D /* FeedRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		55800D8F25EA984F00834BEC /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				55800DA125EAA39000834BEC /* Interactor */,
+				55800D9025EA988400834BEC /* Model */,
+				55800DA725EAA96C00834BEC /* Presenter */,
+				55800DAC25EAA9D600834BEC /* ViewController */,
+				55800D9925EAA25100834BEC /* Worker */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		55800D9025EA988400834BEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55800D9125EA989D00834BEC /* DetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		55800D9925EAA25100834BEC /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				55800D9A25EAA27000834BEC /* DetailsWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		55800DA125EAA39000834BEC /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				55800D9E25EAA38C00834BEC /* DetailsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		55800DA725EAA96C00834BEC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				55800DA325EAA96700834BEC /* DetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		55800DAC25EAA9D600834BEC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				55800DA925EAA9D100834BEC /* DetailsViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		62E786CD099A70E397284E19 /* Frameworks */ = {
@@ -365,10 +428,15 @@
 			files = (
 				5563253D25E82DB4005271B8 /* FeedPresenter.swift in Sources */,
 				551CE63725E7B3D500AFABCE /* ApiError.swift in Sources */,
+				55800D9225EA989D00834BEC /* DetailsModel.swift in Sources */,
+				55800D9F25EAA38C00834BEC /* DetailsInteractor.swift in Sources */,
+				55800DAA25EAA9D100834BEC /* DetailsViewController.swift in Sources */,
 				555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */,
+				55800D9B25EAA27000834BEC /* DetailsWorker.swift in Sources */,
 				551CE63425E7A2AC00AFABCE /* ApiRouter.swift in Sources */,
 				551CE61925E760BA00AFABCE /* FeedViewController.swift in Sources */,
 				555CD52525E5809B001AB00B /* AppDelegate.swift in Sources */,
+				55800DA425EAA96700834BEC /* DetailsPresenter.swift in Sources */,
 				551CE62C25E78FB400AFABCE /* ApiConstants.swift in Sources */,
 				551CE62425E77E6300AFABCE /* FeedType.swift in Sources */,
 				557A47FA25EA13470074A58D /* FeedRouter.swift in Sources */,
