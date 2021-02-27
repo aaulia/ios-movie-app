@@ -10,23 +10,36 @@ import Nuke
 
 final class FeedViewController: UICollectionViewController {
     
-    private let cellCorderRadius: CGFloat = 8
-    private let movieCellPerLine: CGFloat = 3
-    private let movieCellSpacing: CGFloat = 10
-    private let movieCellRatio  : CGFloat = 0.66666666666 // = 2 / 3
+    private let cellCorderRadius = CGFloat(8)
+    private let movieCellPerLine = CGFloat(3)
+    private let movieCellSpacing = CGFloat(10)
+    private let movieCellRatio   = CGFloat(0.66666666666) // = 2 / 3
     
     private let contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    private let brokenImage  = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
+    private let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
+    private let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
+
+    private(set) lazy var nukeOptions  = {
+        ImageLoadingOptions(
+            placeholder : placeholder,
+            failureImage: failureImage,
+            contentModes: ImageLoadingOptions.ContentModes(
+                success    : .scaleAspectFill,
+                failure    : .center,
+                placeholder: .center
+            )
+        )
+    }()
     
     
     private let feedType: FeedType
     private var viewModel = Feed.ViewModel(movies: [])
     
     
+    private let router: FeedRouting = FeedRouter()
     private(set) lazy var output: FeedInteractorInput = {
        return FeedInteractor(FeedPresenter(self), FeedWorker())
     }()
-    private let router: FeedRouting = FeedRouter()
 
     
     init(withType type: FeedType) {
@@ -79,8 +92,8 @@ final class FeedViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movie = viewModel.movies[indexPath.row]
-        router.routeToDetails(movieId: movie.id)
+        let data = viewModel.movies[indexPath.row]
+        router.routeToDetails(movieId: data.id)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -95,12 +108,11 @@ final class FeedViewController: UICollectionViewController {
             movieCell.layer.cornerRadius = cellCorderRadius
             movieCell.layer.cornerCurve  = .continuous
             
-            if let poster = data.image {
-                movieCell.imagePoster.contentMode = .scaleAspectFill
-                Nuke.loadImage(with: poster, into: movieCell.imagePoster)
+            if let poster = data.poster {
+                Nuke.loadImage(with: poster, options: nukeOptions, into: movieCell.imagePoster)
             } else {
-                movieCell.imagePoster.contentMode = .center
-                movieCell.imagePoster.image = brokenImage
+                movieCell.imagePoster.contentMode = nukeOptions.contentModes?.failure ?? .center
+                movieCell.imagePoster.image       = nukeOptions.failureImage
             }
         }
         
