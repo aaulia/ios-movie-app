@@ -72,10 +72,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="gc8-5d-HVj" secondAttribute="trailing" id="Es2-dV-cSx"/>
+                <constraint firstAttribute="trailing" secondItem="gc8-5d-HVj" secondAttribute="trailing" priority="750" id="Es2-dV-cSx"/>
                 <constraint firstItem="gc8-5d-HVj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dsE-zZ-sO0"/>
                 <constraint firstItem="gc8-5d-HVj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o65-Iv-AxU"/>
-                <constraint firstAttribute="bottom" secondItem="gc8-5d-HVj" secondAttribute="bottom" id="ubl-op-1dW"/>
+                <constraint firstAttribute="bottom" secondItem="gc8-5d-HVj" secondAttribute="bottom" priority="750" id="ubl-op-1dW"/>
             </constraints>
             <connections>
                 <outlet property="imageBackdrop" destination="txo-Rf-2V5" id="kx8-Ia-cxG"/>

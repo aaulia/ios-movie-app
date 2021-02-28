@@ -62,8 +62,8 @@
             <constraints>
                 <constraint firstItem="jGA-1a-bVU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7wj-HK-VwZ"/>
                 <constraint firstItem="jGA-1a-bVU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Elg-FG-wti"/>
-                <constraint firstAttribute="trailing" secondItem="jGA-1a-bVU" secondAttribute="trailing" id="kiw-IX-mKh"/>
-                <constraint firstAttribute="bottom" secondItem="jGA-1a-bVU" secondAttribute="bottom" id="zUf-XJ-3rq"/>
+                <constraint firstAttribute="trailing" secondItem="jGA-1a-bVU" secondAttribute="trailing" priority="750" id="kiw-IX-mKh"/>
+                <constraint firstAttribute="bottom" secondItem="jGA-1a-bVU" secondAttribute="bottom" priority="750" id="zUf-XJ-3rq"/>
             </constraints>
             <connections>
                 <outlet property="collectionView" destination="e23-tx-rkF" id="r5P-zE-tC7"/>

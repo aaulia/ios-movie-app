@@ -53,8 +53,8 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="kR3-KV-lZ7" secondAttribute="trailing" id="5WP-RW-bXm"/>
-                <constraint firstAttribute="bottom" secondItem="kR3-KV-lZ7" secondAttribute="bottom" id="Pug-gd-rlR"/>
+                <constraint firstAttribute="trailing" secondItem="kR3-KV-lZ7" secondAttribute="trailing" priority="750" id="5WP-RW-bXm"/>
+                <constraint firstAttribute="bottom" secondItem="kR3-KV-lZ7" secondAttribute="bottom" priority="750" id="Pug-gd-rlR"/>
                 <constraint firstItem="kR3-KV-lZ7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ftg-i9-HmP"/>
                 <constraint firstItem="kR3-KV-lZ7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o89-Nt-1nO"/>
             </constraints>
