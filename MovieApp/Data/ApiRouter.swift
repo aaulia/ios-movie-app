@@ -24,6 +24,7 @@ struct ApiRoute {
         case upcoming
         
         case details(Int)
+        case credits(Int)
 
         
         var method: HTTPMethod {
@@ -33,7 +34,9 @@ struct ApiRoute {
                  .topRated  ,
                  .upcoming  : return .get
                 
-            case .details(_): return .get
+            case .details(_),
+                 .credits(_): return .get
+                
             }
         }
         
@@ -44,8 +47,8 @@ struct ApiRoute {
             case .topRated  : return "/movie/top_rated"
             case .upcoming  : return "/movie/upcoming"
             
-            case .details(let movieId):
-                return "/movie/\(movieId)"
+            case .details(let movieId): return "/movie/\(movieId)"
+            case .credits(let movieId): return "/movie/\(movieId)/credits"
             }
         }
         
@@ -67,6 +70,12 @@ struct ApiRoute {
                 return [
                     "api_key": ApiConstants.TMDB.apiKey,
                     "append_to_response": "credits"
+                ]
+                
+            case .credits(_):
+                return [
+                    "api_key": ApiConstants.TMDB.apiKey,
+                    "language": ApiConstants.TMDB.languageCode
                 ]
             }
         }

@@ -45,8 +45,24 @@ class DetailsViewController: UICollectionViewController {
         collectionView.backgroundColor = UIColor.systemBackground
         collectionView.delegate        = self
         collectionView.dataSource      = self
+        
+        output.fetchCredits(movieId: data.id)
     }
 
 }
 
-extension DetailsViewController: DetailsPresenterOutput {}
+extension DetailsViewController: DetailsPresenterOutput {
+    
+    func showLoading() {}
+    
+    func hideLoading() {}
+    
+    func showFailure(_ error: Error) {}
+    
+    func showSuccess(_ model: Details.ViewModel) {
+        for cast in model.casts {
+            print("\(cast.name) -> \(cast.character)")
+        }
+    }
+    
+}

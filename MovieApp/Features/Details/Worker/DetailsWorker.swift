@@ -9,6 +9,12 @@ import Alamofire
 import Combine
 import Foundation
 
-protocol DetailsWorkerProtocol {}
+protocol DetailsWorkerProtocol {
+    func fetchCredits(movieId id: Int) -> AnyPublisher<Details.Response, AFError>
+}
 
-final class DetailsWorker: DetailsWorkerProtocol {}
+final class DetailsWorker: DetailsWorkerProtocol {
+    func fetchCredits(movieId id: Int) -> AnyPublisher<Details.Response, AFError> {
+        return ApiRouter.request(ApiRoute.TMDB.credits(id), ofType: Details.Response.self)
+    }
+}

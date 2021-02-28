@@ -14,53 +14,27 @@ struct Details {
     }
     
     struct Response: Codable {
-        let title   : String
-        let overview: String
-        let rating  : Float?
-        let poster  : String?
-        let backdrop: String?
-        let genres  : [Genre]
-        let credits : Credits
+        let casts: [Cast]
         
         enum CodingKeys: String, CodingKey {
-            case title
-            case overview
-            case rating   = "vote_average"
-            case poster   = "poster_path"
-            case backdrop = "backdrop_path"
-            case genres
-            case credits
+            case casts = "cast"
         }
         
-        struct Genre: Codable {
-            let name: String
-        }
-        
-        struct Credits: Codable {
-            let cast: [Cast]
+        struct Cast: Codable {
+            let name     : String
+            let character: String?
+            let profile  : String?
             
-            struct Cast: Codable {
-                let name     : String
-                let character: String?
-                let profile  : String?
-                
-                enum CodingKeys: String, CodingKey {
-                    case name
-                    case character
-                    case profile   = "profile_path"
-                }
+            enum CodingKeys: String, CodingKey {
+                case name
+                case character
+                case profile   = "profile_path"
             }
         }
     }
     
     struct ViewModel {
-        let title   : String
-        let overview: String
-        let rating  : Float?
-        let poster  : URL?
-        let backdrop: URL?
-        let genres  : [String]
-        let casts   : [Cast]
+        let casts: [Cast]
         
         struct Cast {
             let name     : String
