@@ -19,7 +19,33 @@ class DetailsViewController: UICollectionViewController {
         let backdrop: URL?
     }
     
+    enum SectionType: CaseIterable {
+        case primary
+        case overview
+        case casts
+        
+        var identifier: String {
+            switch self {
+            case .primary : return "DetailsPrimary"
+            case .overview: return "DetailsOverview"
+            case .casts   : return "DetailsCasts"
+            }
+        }
+        
+        var nibName: String {
+            switch self {
+            case .primary : return "DetailsPrimaryCell"
+            case .overview: return "DetailsOverviewCell"
+            case .casts   : return "DetailsCastsCell"
+            }
+        }
+        
+    }
+    
+    
     let movie: Data
+    var cells: [SectionType] = [.primary, .overview, .casts]
+    var model: DetailsSectionModel
     
     
     private(set) lazy var output: DetailsInteractorInput = {
@@ -29,6 +55,7 @@ class DetailsViewController: UICollectionViewController {
     
     init(data: Data) {
         self.movie = data
+        self.model = DetailsSectionModel(movie: data, casts: nil)
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -47,42 +74,26 @@ class DetailsViewController: UICollectionViewController {
         collectionView.delegate        = self
         collectionView.dataSource      = self
 
-        let nibDetailsPrimary = UINib(nibName: "DetailsPrimaryCell", bundle: nil)
-        collectionView.register(nibDetailsPrimary, forCellWithReuseIdentifier: "DetailsPrimary")
+        SectionType.allCases.forEach { type in
+            let nib = UINib(nibName: type.nibName, bundle: nil)
+            collectionView.register(nib, forCellWithReuseIdentifier: type.identifier)
+        }
+        
+        output.fetchCredits(movieId: movie.id)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return cells.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsPrimary", for: indexPath)
+        let type = cells[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type.identifier, for: indexPath)
         
-        if let detailsPrimary = cell as? DetailsPrimaryCell {
-            detailsPrimary.maxWidth = collectionView.bounds.width
-            
-            detailsPrimary.labelTitle.text  = movie.title
-            
-            if let rating = movie.rating {
-                detailsPrimary.labelRating.isHidden = false
-                detailsPrimary.labelRating.text     = String(format: "★ %.1f", rating)
-            } else {
-                detailsPrimary.labelRating.isHidden = true
-            }
-            
-            if let poster = movie.poster {
-                Nuke.loadImage(with: poster, into: detailsPrimary.imagePoster)
-            } else {
-                detailsPrimary.imagePoster.image = nil
-            }
-            
-            if let backdrop = movie.backdrop {
-                Nuke.loadImage(with: backdrop, into: detailsPrimary.imageBackdrop)
-            } else {
-                detailsPrimary.imageBackdrop.image = nil
-            }
+        if let section = cell as? DetailsSection {
+            section.setup(collectionView: collectionView, model: self.model)
         }
-        
+                
         return cell
     }
 
@@ -96,6 +107,16 @@ extension DetailsViewController: DetailsPresenterOutput {
     
     func showFailure(_ error: Error) {}
     
-    func showSuccess(_ model: Details.ViewModel) {}
+    func showSuccess(_ model: Details.ViewModel) {
+        if model.casts.isEmpty {
+            return
+        }
+        
+        self.model = DetailsSectionModel(movie: self.movie, casts: model.casts)
+        
+        if let row = cells.firstIndex(of: .casts) {
+            collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+        }
+    }
     
 }
