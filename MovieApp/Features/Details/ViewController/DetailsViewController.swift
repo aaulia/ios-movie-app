@@ -113,10 +113,7 @@ extension DetailsViewController: DetailsPresenterOutput {
         }
         
         self.model = DetailsSectionModel(movie: self.movie, casts: model.casts)
-        
-        if let row = cells.firstIndex(of: .casts) {
-            collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
-        }
+        collectionView.reloadData()
     }
     
 }

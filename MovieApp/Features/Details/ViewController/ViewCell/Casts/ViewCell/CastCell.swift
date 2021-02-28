@@ -9,13 +9,15 @@ import UIKit
 
 class CastCell: UICollectionViewCell {
 
+    @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var imageProfile: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageProfile.layer.cornerRadius = 8
-        imageProfile.layer.cornerCurve  = .continuous
+        contentView.layer.cornerRadius  = 8
+        contentView.layer.cornerCurve   = .continuous
+        contentView.layer.masksToBounds = true
     }
 
 }
