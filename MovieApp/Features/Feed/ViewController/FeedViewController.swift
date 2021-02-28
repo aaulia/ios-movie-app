@@ -36,7 +36,7 @@ final class FeedViewController: UICollectionViewController {
     private var viewModel = Feed.ViewModel(movies: [])
     
     
-    private let router: FeedRouting = FeedRouter()
+    private(set) lazy var router: FeedRouting = { FeedRouter(controller: self) }()
     private(set) lazy var output: FeedInteractorInput = {
        return FeedInteractor(FeedPresenter(self), FeedWorker())
     }()
@@ -93,7 +93,7 @@ final class FeedViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = viewModel.movies[indexPath.row]
-        router.routeToDetails(movieId: data.id)
+        router.routeToDetails(movie: data)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
