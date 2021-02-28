@@ -28,6 +28,8 @@
 		55800D9F25EAA38C00834BEC /* DetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9E25EAA38C00834BEC /* DetailsInteractor.swift */; };
 		55800DA425EAA96700834BEC /* DetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800DA325EAA96700834BEC /* DetailsPresenter.swift */; };
 		55800DAA25EAA9D100834BEC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800DA925EAA9D100834BEC /* DetailsViewController.swift */; };
+		55AA0CF825EBC6BE009E4ADF /* DetailsPrimaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0CF625EBC6BE009E4ADF /* DetailsPrimaryCell.swift */; };
+		55AA0CF925EBC6BE009E4ADF /* DetailsPrimaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA0CF725EBC6BE009E4ADF /* DetailsPrimaryCell.xib */; };
 		55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55B03BEE25E7F6E700365DEC /* TMDB.plist */; };
 		56379596CD6042BA3E840AA8 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574B84E42FD702378990DCBC /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		55800D9E25EAA38C00834BEC /* DetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsInteractor.swift; sourceTree = "<group>"; };
 		55800DA325EAA96700834BEC /* DetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPresenter.swift; sourceTree = "<group>"; };
 		55800DA925EAA9D100834BEC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		55AA0CF625EBC6BE009E4ADF /* DetailsPrimaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPrimaryCell.swift; sourceTree = "<group>"; };
+		55AA0CF725EBC6BE009E4ADF /* DetailsPrimaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsPrimaryCell.xib; sourceTree = "<group>"; };
 		55B03BEE25E7F6E700365DEC /* TMDB.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = TMDB.plist; path = MovieApp/TMDB.plist; sourceTree = SOURCE_ROOT; };
 		574B84E42FD702378990DCBC /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D6137D63CAA7611546BC0B4 /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,9 +273,27 @@
 		55800DAC25EAA9D600834BEC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				55AA0CFB25EBC6C3009E4ADF /* ViewCell */,
 				55800DA925EAA9D100834BEC /* DetailsViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		55AA0CFB25EBC6C3009E4ADF /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				55AA0CFE25EBEEC9009E4ADF /* Primary */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		55AA0CFE25EBEEC9009E4ADF /* Primary */ = {
+			isa = PBXGroup;
+			children = (
+				55AA0CF625EBC6BE009E4ADF /* DetailsPrimaryCell.swift */,
+				55AA0CF725EBC6BE009E4ADF /* DetailsPrimaryCell.xib */,
+			);
+			path = Primary;
 			sourceTree = "<group>";
 		};
 		62E786CD099A70E397284E19 /* Frameworks */ = {
@@ -352,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */,
+				55AA0CF925EBC6BE009E4ADF /* DetailsPrimaryCell.xib in Resources */,
 				557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */,
 				55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */,
 				555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */,
@@ -431,6 +454,7 @@
 				55800D9225EA989D00834BEC /* DetailsModel.swift in Sources */,
 				55800D9F25EAA38C00834BEC /* DetailsInteractor.swift in Sources */,
 				55800DAA25EAA9D100834BEC /* DetailsViewController.swift in Sources */,
+				55AA0CF825EBC6BE009E4ADF /* DetailsPrimaryCell.swift in Sources */,
 				555CD52925E5809B001AB00B /* HomeViewController.swift in Sources */,
 				55800D9B25EAA27000834BEC /* DetailsWorker.swift in Sources */,
 				551CE63425E7A2AC00AFABCE /* ApiRouter.swift in Sources */,
