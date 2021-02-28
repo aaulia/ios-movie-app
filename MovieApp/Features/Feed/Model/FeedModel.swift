@@ -17,12 +17,20 @@ struct Feed {
         let results: [Movie]
         
         struct Movie: Codable {
-            let id    : Int
-            let poster: String?
-            
+            let id      : Int
+            let title   : String
+            let overview: String
+            let rating  : Float?
+            let poster  : String?
+            let backdrop: String?
+
             enum CodingKeys: String, CodingKey {
                 case id
-                case poster = "poster_path"
+                case title
+                case overview
+                case rating   = "vote_average"
+                case poster   = "poster_path"
+                case backdrop = "backdrop_path"
             }
         }
     }
@@ -31,8 +39,12 @@ struct Feed {
         let movies: [Movie]
         
         struct Movie {
-            let id    : Int
-            let poster: URL?
+            let id      : Int
+            let title   : String
+            let overview: String
+            let rating  : Float?
+            let poster  : URL?
+            let backdrop: URL?
         }
     }
     

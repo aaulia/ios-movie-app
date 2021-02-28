@@ -93,7 +93,7 @@ final class FeedViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let data = viewModel.movies[indexPath.row]
-        router.routeToDetails(movieId: data.id)
+        router.routeToDetails(movie: data)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

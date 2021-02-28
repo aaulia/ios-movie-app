@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FeedRouting {
-    func routeToDetails(movieId id: Int)
+    func routeToDetails(movie: Feed.ViewModel.Movie)
 }
 
 final class FeedRouter: FeedRouting {
@@ -20,8 +20,17 @@ final class FeedRouter: FeedRouting {
         self.controller = controller
     }
     
-    func routeToDetails(movieId id: Int) {
-        controller?.present(DetailsViewController(movieId: id), animated: true)
+    func routeToDetails(movie: Feed.ViewModel.Movie) {
+        let data = DetailsViewController.Data(
+            id      : movie.id,
+            title   : movie.title,
+            overview: movie.overview,
+            rating  : movie.rating,
+            poster  : movie.poster,
+            backdrop: movie.backdrop
+        )
+        
+        controller?.present(DetailsViewController(data: data), animated: true)
     }
     
 }

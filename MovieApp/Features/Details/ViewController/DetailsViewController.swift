@@ -9,7 +9,16 @@ import UIKit
 
 class DetailsViewController: UICollectionViewController {
 
-    let movieId: Int
+    struct Data {
+        let id      : Int
+        let title   : String
+        let overview: String
+        let rating  : Float?
+        let poster  : URL?
+        let backdrop: URL?
+    }
+    
+    let data: Data
     
     
     private(set) lazy var output: DetailsInteractorInput = {
@@ -17,10 +26,13 @@ class DetailsViewController: UICollectionViewController {
     }()
 
     
-    init(movieId: Int) {
-        self.movieId = movieId
+    init(data: Data) {
+        self.data = data
         
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        
+        super.init(collectionViewLayout: flowLayout)
     }
     
     required init?(coder: NSCoder) {
@@ -33,20 +45,8 @@ class DetailsViewController: UICollectionViewController {
         collectionView.backgroundColor = UIColor.systemBackground
         collectionView.delegate        = self
         collectionView.dataSource      = self
-        
-        output.fetchDetails(Details.Request(movieId: self.movieId))
     }
 
 }
 
-extension DetailsViewController: DetailsPresenterOutput {
-    
-    func showLoading() {}
-    
-    func hideLoading() {}
-    
-    func showFailure(_ error: Error) {}
-    
-    func showSuccess(_ model: Details.ViewModel) {}
-    
-}
+extension DetailsViewController: DetailsPresenterOutput {}
