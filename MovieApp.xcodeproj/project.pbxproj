@@ -32,8 +32,7 @@
 		55AA0CF925EBC6BE009E4ADF /* DetailsPrimaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA0CF725EBC6BE009E4ADF /* DetailsPrimaryCell.xib */; };
 		55AA0D0325EBEEF0009E4ADF /* DetailsOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D0125EBEEF0009E4ADF /* DetailsOverviewCell.swift */; };
 		55AA0D0425EBEEF0009E4ADF /* DetailsOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA0D0225EBEEF0009E4ADF /* DetailsOverviewCell.xib */; };
-		55AA0D0925EBF58D009E4ADF /* DetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D0825EBF58D009E4ADF /* DetailsSection.swift */; };
-		55AA0D0C25EBF727009E4ADF /* DetailsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D0B25EBF727009E4ADF /* DetailsSectionModel.swift */; };
+		55AA0D0925EBF58D009E4ADF /* DetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D0825EBF58D009E4ADF /* DetailsCell.swift */; };
 		55AA0D1425EBFAE8009E4ADF /* DetailsCastsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D1225EBFAE8009E4ADF /* DetailsCastsCell.swift */; };
 		55AA0D1525EBFAE8009E4ADF /* DetailsCastsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55AA0D1325EBFAE8009E4ADF /* DetailsCastsCell.xib */; };
 		55AA0D1A25EC0091009E4ADF /* CastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA0D1825EC0091009E4ADF /* CastCell.swift */; };
@@ -71,8 +70,7 @@
 		55AA0CF725EBC6BE009E4ADF /* DetailsPrimaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsPrimaryCell.xib; sourceTree = "<group>"; };
 		55AA0D0125EBEEF0009E4ADF /* DetailsOverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsOverviewCell.swift; sourceTree = "<group>"; };
 		55AA0D0225EBEEF0009E4ADF /* DetailsOverviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsOverviewCell.xib; sourceTree = "<group>"; };
-		55AA0D0825EBF58D009E4ADF /* DetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSection.swift; sourceTree = "<group>"; };
-		55AA0D0B25EBF727009E4ADF /* DetailsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSectionModel.swift; sourceTree = "<group>"; };
+		55AA0D0825EBF58D009E4ADF /* DetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCell.swift; sourceTree = "<group>"; };
 		55AA0D1225EBFAE8009E4ADF /* DetailsCastsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCastsCell.swift; sourceTree = "<group>"; };
 		55AA0D1325EBFAE8009E4ADF /* DetailsCastsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCastsCell.xib; sourceTree = "<group>"; };
 		55AA0D1825EC0091009E4ADF /* CastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCell.swift; sourceTree = "<group>"; };
@@ -327,8 +325,7 @@
 		55AA0D0E25EBF846009E4ADF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				55AA0D0825EBF58D009E4ADF /* DetailsSection.swift */,
-				55AA0D0B25EBF727009E4ADF /* DetailsSectionModel.swift */,
+				55AA0D0825EBF58D009E4ADF /* DetailsCell.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -509,7 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5563253D25E82DB4005271B8 /* FeedPresenter.swift in Sources */,
-				55AA0D0925EBF58D009E4ADF /* DetailsSection.swift in Sources */,
+				55AA0D0925EBF58D009E4ADF /* DetailsCell.swift in Sources */,
 				551CE63725E7B3D500AFABCE /* ApiError.swift in Sources */,
 				55800D9225EA989D00834BEC /* DetailsModel.swift in Sources */,
 				55AA0D1A25EC0091009E4ADF /* CastCell.swift in Sources */,
@@ -528,7 +525,6 @@
 				551CE62425E77E6300AFABCE /* FeedType.swift in Sources */,
 				557A47FA25EA13470074A58D /* FeedRouter.swift in Sources */,
 				557A47EC25E96B150074A58D /* MovieCell.swift in Sources */,
-				55AA0D0C25EBF727009E4ADF /* DetailsSectionModel.swift in Sources */,
 				5563253725E82DA5005271B8 /* FeedModel.swift in Sources */,
 				5563253A25E82DAB005271B8 /* FeedInteractor.swift in Sources */,
 				5563254025E82DBC005271B8 /* FeedWorker.swift in Sources */,

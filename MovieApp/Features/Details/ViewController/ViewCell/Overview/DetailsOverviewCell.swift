@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsOverviewCell: UICollectionViewCell, DetailsSection {
+class DetailsOverviewCell: UICollectionViewCell, DetailsCell {
 
     @IBOutlet weak var labelOverview: UILabel!
     
@@ -34,9 +34,9 @@ class DetailsOverviewCell: UICollectionViewCell, DetailsSection {
         // Initialization code
     }
 
-    func setup(collectionView: UICollectionView, model: DetailsSectionModel) {
-        self.maxWidth           = collectionView.bounds.width
-        self.labelOverview.text = model.movie.overview
+    func render(parentView: UIView, model: Details.ViewModel) {
+        self.maxWidth           = parentView.bounds.width
+        self.labelOverview.text = model.overview
     }
     
 }

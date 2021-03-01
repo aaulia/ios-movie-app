@@ -8,7 +8,7 @@
 import UIKit
 import Nuke
 
-class DetailsPrimaryCell: UICollectionViewCell, DetailsSection {
+class DetailsPrimaryCell: UICollectionViewCell, DetailsCell {
 
     @IBOutlet weak var imageBackdrop: UIImageView!
     @IBOutlet weak var imagePoster  : UIImageView!
@@ -57,24 +57,24 @@ class DetailsPrimaryCell: UICollectionViewCell, DetailsSection {
         labelRating.layer.cornerCurve   = .continuous
     }
 
-    func setup(collectionView: UICollectionView, model: DetailsSectionModel) {
-        self.maxWidth        = collectionView.bounds.width
-        self.labelTitle.text = model.movie.title
+    func render(parentView: UIView, model: Details.ViewModel) {
+        self.maxWidth        = parentView.bounds.width
+        self.labelTitle.text = model.title
         
-        if let rating = model.movie.rating {
+        if let rating = model.rating {
             self.labelRating.isHidden = false
             self.labelRating.text     = String(format: "★ %.1f", rating)
         } else {
             self.labelRating.isHidden = true
         }
         
-        if let poster = model.movie.poster {
+        if let poster = model.poster {
             Nuke.loadImage(with: poster, into: self.imagePoster)
         } else {
             self.imagePoster.image = nil
         }
         
-        if let backdrop = model.movie.backdrop {
+        if let backdrop = model.backdrop {
             Nuke.loadImage(with: backdrop, into: self.imageBackdrop)
         } else {
             self.imageBackdrop.image = nil

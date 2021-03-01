@@ -19,7 +19,7 @@ class DetailsViewController: UICollectionViewController {
         let backdrop: URL?
     }
     
-    enum SectionType: CaseIterable {
+    enum CellType: CaseIterable {
         case primary
         case overview
         case casts
@@ -43,9 +43,12 @@ class DetailsViewController: UICollectionViewController {
     }
     
     
-    let movie: Data
-    var cells: [SectionType] = [.primary, .overview, .casts]
-    var model: DetailsSectionModel
+    var cells: [CellType] = [.primary, .overview, .casts]
+    var model: Details.ViewModel {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     
     private(set) lazy var output: DetailsInteractorInput = {
@@ -54,8 +57,15 @@ class DetailsViewController: UICollectionViewController {
 
     
     init(data: Data) {
-        self.movie = data
-        self.model = DetailsSectionModel(movie: data, casts: nil)
+        self.model = Details.ViewModel(
+            id      : data.id,
+            title   : data.title,
+            overview: data.overview,
+            rating  : data.rating,
+            poster  : data.poster,
+            backdrop: data.backdrop,
+            casts   : []
+        )
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -74,12 +84,12 @@ class DetailsViewController: UICollectionViewController {
         collectionView.delegate        = self
         collectionView.dataSource      = self
 
-        SectionType.allCases.forEach { type in
+        CellType.allCases.forEach { type in
             let nib = UINib(nibName: type.nibName, bundle: nil)
             collectionView.register(nib, forCellWithReuseIdentifier: type.identifier)
         }
         
-        output.fetchCredits(movieId: movie.id)
+        output.fetchCredits(movieId: model.id)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,8 +100,8 @@ class DetailsViewController: UICollectionViewController {
         let type = cells[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type.identifier, for: indexPath)
         
-        if let section = cell as? DetailsSection {
-            section.setup(collectionView: collectionView, model: self.model)
+        if let section = cell as? DetailsCell {
+            section.render(parentView: collectionView, model: self.model)
         }
                 
         return cell
@@ -101,19 +111,12 @@ class DetailsViewController: UICollectionViewController {
 
 extension DetailsViewController: DetailsPresenterOutput {
     
-    func showLoading() {}
-    
-    func hideLoading() {}
-    
-    func showFailure(_ error: Error) {}
-    
-    func showSuccess(_ model: Details.ViewModel) {
-        if model.casts.isEmpty {
+    func showSuccess(_ casts: [Details.ViewModel.Cast]) {
+        if casts.isEmpty {
             return
         }
         
-        self.model = DetailsSectionModel(movie: self.movie, casts: model.casts)
-        collectionView.reloadData()
+        self.model = self.model.copy(casts: casts)
     }
     
 }

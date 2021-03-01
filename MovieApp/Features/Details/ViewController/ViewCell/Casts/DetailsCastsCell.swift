@@ -8,7 +8,7 @@
 import UIKit
 import Nuke
 
-class DetailsCastsCell: UICollectionViewCell, DetailsSection {
+class DetailsCastsCell: UICollectionViewCell, DetailsCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -78,10 +78,10 @@ class DetailsCastsCell: UICollectionViewCell, DetailsSection {
         collectionView.register(nib, forCellWithReuseIdentifier: "CastCell")
     }
 
-    func setup(collectionView: UICollectionView, model: DetailsSectionModel) {
-        self.casts     = model.casts ?? []
-        self.itemSize  = calculateItemSize(maxWidth: collectionView.bounds.width, itemPerLine: 4, spacing: 10, aspectRatio: 2 / 3)
-        self.maxWidth  = collectionView.bounds.width
+    func render(parentView: UIView, model: Details.ViewModel) {
+        self.casts     = model.casts
+        self.itemSize  = calculateItemSize(maxWidth: parentView.bounds.width, itemPerLine: 4, spacing: 10, aspectRatio: 2 / 3)
+        self.maxWidth  = parentView.bounds.width
         self.maxHeight = calculateMaxHeight(size: self.itemSize, count: self.casts.count, itemPerLine: 4, spacing: 10)
         
         self.collectionView.reloadData()

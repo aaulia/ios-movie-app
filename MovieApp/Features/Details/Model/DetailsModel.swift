@@ -34,12 +34,39 @@ struct Details {
     }
     
     struct ViewModel {
-        let casts: [Cast]
+        let id      : Int
+        let title   : String
+        let overview: String
+        let rating  : Float?
+        let poster  : URL?
+        let backdrop: URL?
+        let casts   : [Cast]
         
         struct Cast {
             let name     : String
             let character: String
             let profile  : URL?
+        }
+        
+        
+        func copy(
+            id      : Int?    = nil,
+            title   : String? = nil,
+            overview: String? = nil,
+            rating  : Float?  = nil,
+            poster  : URL?    = nil,
+            backdrop: URL?    = nil,
+            casts   : [Cast]? = nil
+        ) -> ViewModel {
+            return ViewModel(
+                id      : id       ?? self.id,
+                title   : title    ?? self.title,
+                overview: overview ?? self.overview,
+                rating  : rating   ?? self.rating,
+                poster  : poster   ?? self.poster,
+                backdrop: backdrop ?? self.backdrop,
+                casts   : casts    ?? self.casts
+            )
         }
     }
 }

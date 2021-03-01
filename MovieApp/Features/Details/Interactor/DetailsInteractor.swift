@@ -13,10 +13,7 @@ protocol DetailsInteractorInput {
 }
 
 protocol DetailsInteractorOutput {
-    func showLoading()
-    func hideLoading()
-    func showFailure(_ error: Error)
-    func showSuccess(_ model: Details.ViewModel)
+    func showSuccess(_ casts: [Details.ViewModel.Cast])
 }
 
 final class DetailsInteractor: DetailsInteractorInput {
@@ -32,13 +29,12 @@ final class DetailsInteractor: DetailsInteractorInput {
     }
 
     func fetchCredits(movieId id: Int) {
-        output.showLoading()
         worker.fetchCredits(movieId: id)
             .sink(
-                receiveCompletion: { [weak self] completion in
+                receiveCompletion: { completion in
                     switch completion {
                     case .finished: break
-                    case .failure(let error): self?.output.showFailure(error)
+                    case .failure(let error): debugPrint(error)
                     }
                 },
                 receiveValue: { [weak self] response in
@@ -53,8 +49,7 @@ final class DetailsInteractor: DetailsInteractorInput {
                             )
                         }
                 
-                    self?.output.hideLoading()
-                    self?.output.showSuccess(Details.ViewModel(casts: Array(casts)))
+                    self?.output.showSuccess(Array(casts))
                 }
             )
             .store(in: &cancellables)
