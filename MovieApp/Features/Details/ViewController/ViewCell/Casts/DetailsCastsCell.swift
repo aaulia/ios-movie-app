@@ -9,15 +9,22 @@ import UIKit
 import Nuke
 
 class DetailsCastsCell: UICollectionViewCell, DetailsCell {
+    
+    private enum Config {
+
+        static let castCellPerLine = CGFloat(4)
+        static let castCellSpacing = CGFloat(10)
+        static let castCellRatio   = CGFloat(0.66666666666) // = 2 / 3
+        
+    }
+
 
     @IBOutlet weak var collectionView: UICollectionView!
-
     @IBOutlet private var maxHeightConstraint: NSLayoutConstraint! {
         didSet {
             maxHeightConstraint.isActive = false
         }
     }
-
     @IBOutlet private var maxWidthConstraint: NSLayoutConstraint! {
         didSet {
             maxWidthConstraint.isActive = false
@@ -46,27 +53,15 @@ class DetailsCastsCell: UICollectionViewCell, DetailsCell {
             maxWidthConstraint.constant = maxWidth
         }
     }
-    
-    
-    private let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
-    private let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
-
-    private(set) lazy var nukeOptions  = {
-        ImageLoadingOptions(
-            placeholder : placeholder,
-            failureImage: failureImage,
-            contentModes: ImageLoadingOptions.ContentModes(
-                success    : .scaleAspectFill,
-                failure    : .center,
-                placeholder: .center
-            )
-        )
-    }()
 
     
-    var casts   : [Details.ViewModel.Cast] = []
     var itemSize: CGSize = CGSize.zero
-    
+    var casts   : [Details.ViewModel.Cast] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -74,30 +69,24 @@ class DetailsCastsCell: UICollectionViewCell, DetailsCell {
         collectionView.delegate        = self
         collectionView.dataSource      = self
         
-        let nib = UINib(nibName: "CastCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "CastCell")
+        let nib = UINib(nibName: CastCell.nibName, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: CastCell.identifier)
     }
 
     func render(parentView: UIView, model: Details.ViewModel) {
-        self.casts     = model.casts
-        self.itemSize  = calculateItemSize(maxWidth: parentView.bounds.width, itemPerLine: 4, spacing: 10, aspectRatio: 2 / 3)
+        calculateDimensions(parentView, withItemCount: model.casts.count)
+        self.casts = model.casts
+    }
+    
+    private func calculateDimensions(_ parentView: UIView, withItemCount: Int) {
+        let contentWidth = parentView.bounds.width - (Config.castCellSpacing * (Config.castCellPerLine + 1))
+        let itemWidth    = contentWidth / Config.castCellPerLine
+        let itemHeight   = itemWidth / Config.castCellRatio
+        let rowCount     = ceil(CGFloat(withItemCount) / Config.castCellPerLine)
+
         self.maxWidth  = parentView.bounds.width
-        self.maxHeight = calculateMaxHeight(size: self.itemSize, count: self.casts.count, itemPerLine: 4, spacing: 10)
-        
-        self.collectionView.reloadData()
-    }
-    
-    private func calculateItemSize(maxWidth: CGFloat, itemPerLine count: Int, spacing: Int, aspectRatio: CGFloat) -> CGSize {
-        let content: CGFloat = maxWidth - (CGFloat(spacing) * CGFloat(count + 1))
-        let w = content / CGFloat(count)
-        let h = w / aspectRatio
-        
-        return CGSize(width: w, height: h)
-    }
-    
-    func calculateMaxHeight(size: CGSize, count: Int, itemPerLine: Int, spacing: Int) -> CGFloat {
-        let rows = CGFloat(ceil(Float(count) / Float(itemPerLine)))
-        return ((size.height + CGFloat(spacing)) * rows) + CGFloat(spacing)
+        self.maxHeight = (itemHeight * rowCount) + (Config.castCellSpacing * (rowCount + 1))
+        self.itemSize  = CGSize(width: itemWidth, height: itemHeight)
     }
     
 }
@@ -117,18 +106,11 @@ extension DetailsCastsCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastCell.identifier, for: indexPath)
         let cast = casts[indexPath.row]
         
         if let castCell = cell as? CastCell {
-            castCell.labelName.text = cast.name
-            
-            if let profile = cast.profile {
-                Nuke.loadImage(with: profile, options: nukeOptions, into: castCell.imageProfile)
-            } else {
-                castCell.imageProfile.contentMode = nukeOptions.contentModes?.failure ?? .center
-                castCell.imageProfile.image       = nukeOptions.failureImage
-            }
+            castCell.render(cast)
         }
         
         return cell

@@ -80,9 +80,10 @@ class DetailsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.backgroundColor = UIColor.systemBackground
-        collectionView.delegate        = self
-        collectionView.dataSource      = self
+        collectionView.backgroundColor              = UIColor.systemBackground
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate                     = self
+        collectionView.dataSource                   = self
 
         CellType.allCases.forEach { type in
             let nib = UINib(nibName: type.nibName, bundle: nil)
@@ -90,6 +91,10 @@ class DetailsViewController: UICollectionViewController {
         }
         
         output.fetchCredits(movieId: model.id)
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        collectionView.bounces = collectionView.contentOffset.y > 100
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
