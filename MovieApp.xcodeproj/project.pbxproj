@@ -20,8 +20,8 @@
 		5563253D25E82DB4005271B8 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563253C25E82DB4005271B8 /* FeedPresenter.swift */; };
 		5563254025E82DBC005271B8 /* FeedWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563253F25E82DBC005271B8 /* FeedWorker.swift */; };
 		556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556E6F0025E5A2CD0065EC32 /* SplashView.xib */; };
-		557A47EC25E96B150074A58D /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47EA25E96B150074A58D /* MovieViewCell.swift */; };
-		557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 557A47EB25E96B150074A58D /* MovieViewCell.xib */; };
+		557A47EC25E96B150074A58D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47EA25E96B150074A58D /* MovieCell.swift */; };
+		557A47ED25E96B150074A58D /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 557A47EB25E96B150074A58D /* MovieCell.xib */; };
 		557A47FA25EA13470074A58D /* FeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A47F925EA13470074A58D /* FeedRouter.swift */; };
 		55800D9225EA989D00834BEC /* DetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9125EA989D00834BEC /* DetailsModel.swift */; };
 		55800D9B25EAA27000834BEC /* DetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55800D9A25EAA27000834BEC /* DetailsWorker.swift */; };
@@ -59,8 +59,8 @@
 		5563253C25E82DB4005271B8 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		5563253F25E82DBC005271B8 /* FeedWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWorker.swift; sourceTree = "<group>"; };
 		556E6F0025E5A2CD0065EC32 /* SplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashView.xib; sourceTree = "<group>"; };
-		557A47EA25E96B150074A58D /* MovieViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
-		557A47EB25E96B150074A58D /* MovieViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewCell.xib; sourceTree = "<group>"; };
+		557A47EA25E96B150074A58D /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		557A47EB25E96B150074A58D /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		557A47F925EA13470074A58D /* FeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRouter.swift; sourceTree = "<group>"; };
 		55800D9125EA989D00834BEC /* DetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsModel.swift; sourceTree = "<group>"; };
 		55800D9A25EAA27000834BEC /* DetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsWorker.swift; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 		557A47E925E96AD10074A58D /* ViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				557A47EA25E96B150074A58D /* MovieViewCell.swift */,
-				557A47EB25E96B150074A58D /* MovieViewCell.xib */,
+				557A47EA25E96B150074A58D /* MovieCell.swift */,
+				557A47EB25E96B150074A58D /* MovieCell.xib */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -432,7 +432,7 @@
 				55AA0D1B25EC0091009E4ADF /* CastCell.xib in Resources */,
 				556E6F0125E5A2CD0065EC32 /* SplashView.xib in Resources */,
 				55AA0CF925EBC6BE009E4ADF /* DetailsPrimaryCell.xib in Resources */,
-				557A47ED25E96B150074A58D /* MovieViewCell.xib in Resources */,
+				557A47ED25E96B150074A58D /* MovieCell.xib in Resources */,
 				55B03BEF25E7F6E700365DEC /* TMDB.plist in Resources */,
 				55AA0D1525EBFAE8009E4ADF /* DetailsCastsCell.xib in Resources */,
 				555CD52E25E5809C001AB00B /* Assets.xcassets in Resources */,
@@ -527,7 +527,7 @@
 				55AA0D0325EBEEF0009E4ADF /* DetailsOverviewCell.swift in Sources */,
 				551CE62425E77E6300AFABCE /* FeedType.swift in Sources */,
 				557A47FA25EA13470074A58D /* FeedRouter.swift in Sources */,
-				557A47EC25E96B150074A58D /* MovieViewCell.swift in Sources */,
+				557A47EC25E96B150074A58D /* MovieCell.swift in Sources */,
 				55AA0D0C25EBF727009E4ADF /* DetailsSectionModel.swift in Sources */,
 				5563253725E82DA5005271B8 /* FeedModel.swift in Sources */,
 				5563253A25E82DAB005271B8 /* FeedInteractor.swift in Sources */,

@@ -10,30 +10,38 @@ import Nuke
 
 final class FeedViewController: UICollectionViewController {
     
-    private let cellCorderRadius = CGFloat(8)
-    private let movieCellPerLine = CGFloat(3)
-    private let movieCellSpacing = CGFloat(10)
-    private let movieCellRatio   = CGFloat(0.66666666666) // = 2 / 3
-    
-    private let contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    private let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
-    private let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
+    private enum Config {
 
-    private(set) lazy var nukeOptions  = {
-        ImageLoadingOptions(
-            placeholder : placeholder,
-            failureImage: failureImage,
-            contentModes: ImageLoadingOptions.ContentModes(
-                success    : .scaleAspectFill,
-                failure    : .center,
-                placeholder: .center
-            )
+        static let movieCellPerLine = CGFloat(3)
+        static let movieCellSpacing = CGFloat(10)
+        static let movieCellRatio   = CGFloat(0.66666666666) // = 2 / 3
+        
+        static let contentInset = UIEdgeInsets(
+            top   : movieCellSpacing,
+            left  : movieCellSpacing,
+            bottom: movieCellSpacing,
+            right : movieCellSpacing
         )
-    }()
+
+    }
     
     
     private let feedType: FeedType
-    private var viewModel = Feed.ViewModel(movies: [])
+    private var viewModel = Feed.ViewModel(movies: []) {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
+    private(set) lazy var itemSize: CGSize = {
+        let spacing: CGFloat = Config.movieCellSpacing * (Config.movieCellPerLine + 1)
+        let content: CGFloat = collectionView.bounds.width - spacing
+        
+        let w = content / Config.movieCellPerLine
+        let h = w / Config.movieCellRatio
+        
+        return CGSize(width: w, height: h)
+    }()
     
     
     private(set) lazy var router: FeedRouting = { FeedRouter(controller: self) }()
@@ -62,14 +70,14 @@ final class FeedViewController: UICollectionViewController {
         
         collectionView.refreshControl  = UIRefreshControl()
         collectionView.backgroundColor = UIColor.systemBackground
-        collectionView.contentInset    = self.contentInset
+        collectionView.contentInset    = Config.contentInset
         collectionView.delegate        = self
         collectionView.dataSource      = self
 
         collectionView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         
-        let nibMovieCell = UINib(nibName: "MovieViewCell", bundle: nil)
-        collectionView.register(nibMovieCell, forCellWithReuseIdentifier: "MovieCell")
+        let nibMovieCell = UINib(nibName: MovieCell.nibName, bundle: nil)
+        collectionView.register(nibMovieCell, forCellWithReuseIdentifier: MovieCell.identifier)
         
         
         output.fetchMovies(Feed.Request(feedType: self.feedType))
@@ -101,19 +109,11 @@ final class FeedViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.identifier, for: indexPath)
         let data = viewModel.movies[indexPath.row]
         
-        if let movieCell = cell as? MovieViewCell {
-            movieCell.layer.cornerRadius = cellCorderRadius
-            movieCell.layer.cornerCurve  = .continuous
-            
-            if let poster = data.poster {
-                Nuke.loadImage(with: poster, options: nukeOptions, into: movieCell.imagePoster)
-            } else {
-                movieCell.imagePoster.contentMode = nukeOptions.contentModes?.failure ?? .center
-                movieCell.imagePoster.image       = nukeOptions.failureImage
-            }
+        if let movieCell = cell as? MovieCell {
+            movieCell.render(movie: data)
         }
         
         return cell
@@ -139,7 +139,6 @@ extension FeedViewController: FeedPresenterOutput {
     
     func showSuccess(_ model: Feed.ViewModel) {
         viewModel = model
-        collectionView.reloadData()
     }
     
 }
@@ -147,14 +146,7 @@ extension FeedViewController: FeedPresenterOutput {
 extension FeedViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let spacing: CGFloat = movieCellSpacing * (movieCellPerLine + 1)
-        let content: CGFloat = collectionView.bounds.width - spacing
-        
-        let w = content / movieCellPerLine
-        let h = w / movieCellRatio
-        
-        return CGSize(width: w, height: h)
+        return itemSize
     }
     
 }
