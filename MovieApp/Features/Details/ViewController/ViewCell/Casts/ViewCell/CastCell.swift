@@ -16,8 +16,9 @@ class CastCell: UICollectionViewCell {
     enum Config {
         static let cornerRadius = CGFloat(8)
         
-        private static let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
-        private static let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
+        static let unknownImage = UIImage(named: "icon_profile_unknown")?.withTintColor(UIColor.systemGray4)
+        static let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
+        static let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
 
         static let nukeOptions  = {
             ImageLoadingOptions(
@@ -49,8 +50,8 @@ class CastCell: UICollectionViewCell {
         if let profile = cast.profile {
             Nuke.loadImage(with: profile, options: Config.nukeOptions, into: imageProfile)
         } else {
-            imageProfile.contentMode = Config.nukeOptions.contentModes?.failure ?? .center
-            imageProfile.image       = Config.nukeOptions.failureImage
+            imageProfile.contentMode = .center
+            imageProfile.image       = Config.unknownImage
         }
     }
 

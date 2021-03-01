@@ -17,8 +17,9 @@ class MovieCell: UICollectionViewCell {
         
         static let cornerRadius = CGFloat(8)
         
-        private static let failureImage = UIImage(named: "icon_broken_image")? .withTintColor(UIColor.systemGray4)
-        private static let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
+        static let unknownImage = UIImage(named: "icon_poster_unknown")?.withTintColor(UIColor.systemGray4)
+        static let failureImage = UIImage(named: "icon_broken_image")?.withTintColor(UIColor.systemGray4)
+        static let placeholder  = UIImage(named: "icon_loading_image")?.withTintColor(UIColor.systemGray4)
 
         static var nukeOptions  = {
             ImageLoadingOptions(
@@ -49,8 +50,8 @@ class MovieCell: UICollectionViewCell {
         if let poster = movie.poster {
             Nuke.loadImage(with: poster, options: Config.nukeOptions, into: imagePoster)
         } else {
-            imagePoster.contentMode = Config.nukeOptions.contentModes?.failure ?? .center
-            imagePoster.image       = Config.nukeOptions.failureImage
+            imagePoster.contentMode = .center
+            imagePoster.image       = Config.unknownImage
         }
     }
 }
