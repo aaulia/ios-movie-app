@@ -26,6 +26,8 @@ final class FeedViewController: UICollectionViewController {
     }
     
     
+    private let imagePrefetcher = ImagePrefetcher(destination: .diskCache)
+    
     private let feedType: FeedType
     private var viewModel = Feed.ViewModel(movies: []) {
         didSet {
@@ -68,11 +70,12 @@ final class FeedViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.refreshControl  = UIRefreshControl()
-        collectionView.backgroundColor = UIColor.systemBackground
-        collectionView.contentInset    = Config.contentInset
-        collectionView.delegate        = self
-        collectionView.dataSource      = self
+        collectionView.refreshControl     = UIRefreshControl()
+        collectionView.backgroundColor    = UIColor.systemBackground
+        collectionView.contentInset       = Config.contentInset
+        collectionView.delegate           = self
+        collectionView.dataSource         = self
+        collectionView.prefetchDataSource = self
 
         collectionView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         
@@ -117,6 +120,20 @@ final class FeedViewController: UICollectionViewController {
         }
         
         return cell
+    }
+    
+}
+
+extension FeedViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let requests = indexPaths.compactMap { viewModel.movies[$0.row].poster }
+        imagePrefetcher.startPrefetching(with: requests)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        let requests = indexPaths.compactMap { viewModel.movies[$0.row].poster }
+        imagePrefetcher.stopPrefetching(with: requests)
     }
     
 }
