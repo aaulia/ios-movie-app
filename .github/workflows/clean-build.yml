@@ -11,17 +11,18 @@ on:
 
 jobs:
     clean_build:
-        runs-on: macOS-latest
+        # runs-on: macOS-latest
+        runs-on: self-hosted
 
         steps:
         - name: Checkout source
           uses: actions/checkout@v2
 
-        - name: Setup ruby
-          uses: ruby/setup-ruby@v1
-          with:
-            ruby-version: 2.7.2
-            bundler-cache: true
+        # - name: Setup ruby
+          # uses: ruby/setup-ruby@v1
+          # with:
+            # ruby-version: 2.7.2
+            # bundler-cache: true
 
         - name: Run build
           run: bundle exec fastlane clean_build
